@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-
+	
+	
   resources :users
 	controller :sessions do
 		get "login" => :new
@@ -17,7 +18,10 @@ Rails.application.routes.draw do
 
   get 'pages/about'
 
-  resources :movies
+  resources :movies do 
+	  resources :comments
+  end
+	 
   resources :genres
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

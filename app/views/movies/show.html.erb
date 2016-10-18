@@ -30,5 +30,34 @@
   <%= @movie.genre.name %>
 </p>
 
+<h2>Star Rating and Comment </h2>
+	<%= form_for([@movie, Comment.new])do |f| %>
+	
+	<h3><%= f.label :stars %>
+	<% stars = [1, 2, 3, 4] %>
+	<% stars.each do |star| %>
+		<%= f.radio_button :stars, star %><%= star%>
+	<%end%>
+	</h3></br>
+	<%= f.text_area :content, :rows => 4, :cols => 40 %>
+	<div class = "action">
+		<%= f.submit "Post a Commment" %>
+	</div>
+	<%end>
+	
+	<% if @movie.comments.empty? %>
+		<h3>You are the first Comment </h3>
+	<%else%>
+		<h2>What other felt about this </h2>
+		<% @movie.comments.revers.each do |comment| %>
+		Posted <%= time_ago_in_words(comment.created_at)%> ago by
+		<%end%>
+		<h3>Star Rating</h3>
+		<p>
+			<%= number_with_precision(@movie.average_stars, precision:0) %>
+		</p>
+	<%end%>
+		
+
 <%= link_to 'Edit', edit_movie_path(@movie) %> |
 <%= link_to 'Back', movies_path %>
