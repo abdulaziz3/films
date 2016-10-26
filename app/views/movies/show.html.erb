@@ -7,12 +7,17 @@
 
 <p>
   <strong>Poster:</strong>
-  <%= @movie.poster %>
+  <%= image_tag @movie.poster, :size => '90x90' %>
 </p>
 
 <p>
   <strong>Trailer:</strong>
   <%= @movie.trailer %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= euro @movie.price %>
 </p>
 
 <p>
@@ -30,31 +35,33 @@
   <%= @movie.genre.name %>
 </p>
 
-<h2>Star Rating and Comment </h2>
-	<%= form_for([@movie, Comment.new])do |f| %>
+<h2>Star Rating and Comment: </h2>
+	<%= form_for([@movie, Comment.new]) do |f| %>
 	
 	<h3><%= f.label :stars %>
-	<% stars = [1, 2, 3, 4] %>
+	<% stars = [1, 2, 3, 4, 5] %>
 	<% stars.each do |star| %>
 		<%= f.radio_button :stars, star %><%= star%>
 	<%end%>
 	</h3></br>
 	<%= f.text_area :content, :rows => 4, :cols => 40 %>
-	<div class = "action">
+	<div class = "actions">
 		<%= f.submit "Post a Commment" %>
 	</div>
-	<%end>
+	<%end%>
 	
 	<% if @movie.comments.empty? %>
 		<h3>You are the first Comment </h3>
 	<%else%>
 		<h2>What other felt about this </h2>
-		<% @movie.comments.revers.each do |comment| %>
+		<% @movie.comments.reverse.each do |comment| %>
+			<p><%= comment.content%>
 		Posted <%= time_ago_in_words(comment.created_at)%> ago by
+		<%= comment.user.name %></p>
 		<%end%>
 		<h3>Star Rating</h3>
 		<p>
-			<%= number_with_precision(@movie.average_stars, precision:0) %>
+			<%= number_with_precision(@movie.average_stars, precision: 0) %>
 		</p>
 	<%end%>
 		

@@ -4,6 +4,10 @@
   <strong>Name:</strong>
   <%= @genre.name %>
 </p>
+<p>
+	There's  <%= pluralize(@genre.movies.size, 'movie') %> for this genre.
+	
+</p>
 
 <p>
 	<% @genre.movies.each do |movie| %>

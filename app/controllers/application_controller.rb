@@ -9,8 +9,7 @@ class ApplicationController < ActionController::Base
 	 unless signed_in?
 		store_location
 		redirect_to login_path, :notice => "please sign in to access this page"	
-		
-  end
+	end
 end
 
 	private 

@@ -1,27 +1,24 @@
 Rails.application.routes.draw do
 	
+	resources :movies do 
+		resources :comments
+  	end
 	
   resources :users
 	controller :sessions do
-		get "login" => :new
-		post "login" => :create
-		get "logout" => :destroy
-		delete "logout" => :destroy
+		get 'login' => :new
+		post 'login' => :create
+		get 'logout' => :destroy
+		delete 'logout' => :destroy
 	end
+	
+ get 'discount' =>'movies#discount'
+ get 'apply_discount' => 'movies#apply_discount'
 
+ get 'pages/home'
+ get 'pages/about'
 
-  get 'sessions/new'
-  get 'sessions/create'
-  get 'sessions/destroy'
-
-  get 'pages/home'
-
-  get 'pages/about'
-
-  resources :movies do 
-	  resources :comments
-  end
-	 
+  resources :movies
   resources :genres
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

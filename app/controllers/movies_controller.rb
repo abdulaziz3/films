@@ -61,6 +61,24 @@ class MoviesController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  def discount
+	  @genres = Genre.all
+  end
+  
+  def apply_discount
+	 
+	  discount = params[:discount].to_f
+	  @genre = Genre.find_by_id(params[:genre])
+	  
+	  @movies = @genre.movies
+	  
+	  @movies.each do |m|
+		  m.apply_discount(m, discount)
+		  m.save
+	  end
+	  render 'index', notice:  "Discount of 10% has successfully applied|"
+ end 
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -70,6 +88,6 @@ class MoviesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def movie_params
-      params.require(:movie).permit(:title, :poster, :trailer, :released_on, :rating, :genre_id)
+      params.require(:movie).permit(:title, :poster, :trailer, :released_on, :rating, :genre_id, :price)
     end
 end

@@ -15,19 +15,19 @@
 </div>
 
 <div id = "nav"> 
-	<ul>
-		<li> <%= link_to "About", "#"%></li>
+	<ul>	
+		<li> <%= link_to "About", pages_home_path%></li>
 		<li> <%= link_to "Movie News", "http://oscar.go.com/nominees" %></li> 	
 		<li> <%= mail_to "mary.regan@dit.ie", "Contact us" %></li>
-		<li> <%= link_to "Movies", "movies_path" %></li>
+		<li> <%= link_to "Movies", movies_path %></li>
 		
-			<% if !signed_in? %>
-				<li><%= link_to "Sign In", login_path %></li>
-			<% else %>
-				<li>Signed in as <%=current_user.name%></li>
-				<li><%Link_to "Sign Out", logout_path %></li>
-			<% end %>
-	</ul> 
+		<% if !signed_in? %>
+			<li><%= link_to "Sign In", login_path %></li>
+		<% else %>
+			<li> Signed in as <%= @current_user.name%></li>
+			<li> <%= link_to "Sign Out", logout_path %></li>
+		<% end %>
+	</ul>
 </div>
 
 <%= yield %>

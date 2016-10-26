@@ -1,5 +1,7 @@
 <p id="notice"><%= notice %></p>
 
+<%= button_to 'Apply Discount', discount_path, method: :get %>
+
 <h1>Listing Movies</h1>
 
 <table>
@@ -8,6 +10,7 @@
       <th>Title</th>
       <th>Poster</th>
       <th>Trailer</th>
+      <th>Price</th>
       <th>Released on</th>
       <th>Rating</th>
       <th>Genre</th>
@@ -19,8 +22,9 @@
     <% @movies.each do |movie| %> 
       <tr>
         <td><%= movie.title %></td>
-        <td><%= movie.poster %></td>
+         <td><%= image_tag movie.poster, :size => '50x50' %></td>
         <td><%= movie.trailer %></td>
+        <td><%= euro(movie.price) %></td>
         <td><%= movie.released_on %></td>
         <td><%= movie.rating %></td>
         <td><%= movie.genre.name%></td>
