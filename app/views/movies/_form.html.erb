@@ -39,6 +39,10 @@
     <%= f.label :genre_id %><br>
     <%= f.collection_select :genre_id, Genre.all, :id, :name %>
   </div>
+  <div class="field">
+    <%= f.label :attachment %><br>
+    <%= f.file_field :rattach %>
+</div>
   <div class="actions">
     <%= f.submit %>
   </div>

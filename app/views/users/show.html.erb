@@ -11,6 +11,11 @@
 </p>
 
 <p>
+  <strong>Address:</strong>
+  <%= @user.address %>
+</p>
+
+<p>
   <strong>Dob:</strong>
   <%= @user.dob %>
 </p>
@@ -24,6 +29,15 @@
   <strong>Password digest:</strong>
   <%= @user.password_digest %>
 </p>
+
+<h3>How far from DIT</h3>
+<%= @user.distance_to ("dit Aungier St Dublin") %>
+<h3>Nearby subject</h3>
+<ul>
+	<% @user.nearbys(10).each do |n| %>
+	<li><%= link_to n.address, c %> (<%= n.distance.round(2) %> miles)</li>
+	<% end %>
+</ul>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>

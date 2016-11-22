@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   def authorise
 	 unless signed_in?
 		store_location
-		redirect_to login_path, :notice => "please sign in to access this page"	
+		redirect_to login_path, :notice => "please sign in to access this page"
 	end
 end
 
