@@ -20,6 +20,7 @@
 		<li> <%= link_to "Movie News", "http://oscar.go.com/nominees" %></li> 	
 		<li> <%= mail_to "mary.regan@dit.ie", "Contact us" %></li>
 		<li> <%= link_to "Movies", movies_path %></li>
+		<li><%= render 'movies/search' %></li>
 		
 		<% if !signed_in? %>
 			<li><%= link_to "Sign In", login_path %></li>

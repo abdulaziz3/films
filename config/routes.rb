@@ -4,7 +4,6 @@ Rails.application.routes.draw do
 		resources :comments
   	end
 	
-  resources :users
 	controller :sessions do
 		get 'login' => :new
 		post 'login' => :create
@@ -17,7 +16,9 @@ Rails.application.routes.draw do
 
  get 'pages/home'
  get 'pages/about'
-
+ get 'search' => 'movies#search'
+ 
+  resources :users
   resources :movies
   resources :genres
   # The priority is based upon order of creation: first created -> highest priority.

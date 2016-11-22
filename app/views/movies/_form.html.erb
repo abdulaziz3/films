@@ -32,6 +32,10 @@
     <%= f.date_select :released_on %>
   </div>
   <div class="field">
+    <%= f.label :attachment %><br>
+    <%= f.file_field :attachment %>
+  </div>
+  <div class="field">
     <%= f.label :rating %><br>
     <%= f.text_field :rating %>
   </div>

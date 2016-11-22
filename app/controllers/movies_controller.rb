@@ -8,6 +8,17 @@ class MoviesController < ApplicationController
     @movies = Movie.all
   end
 
+   def search 
+      @movies = Movie.search params[:query]
+      unless @movies.empty?
+        render 'index'
+        else
+          flash[:notice] = "no movie foind"
+          @movie = Movie.all
+          render 'index'
+      end
+    end
+
   # GET /movies/1
   # GET /movies/1.json
   def show
@@ -87,6 +98,6 @@ class MoviesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def movie_params
-      params.require(:movie).permit(:title, :poster, :trailer, :released_on, :rating, :genre_id, :price)
+      params.require(:movie).permit(:title, :poster, :trailer, :released_on, :rating, :genre_id, :price, :attachment)
     end
 end
